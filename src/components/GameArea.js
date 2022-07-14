@@ -29,7 +29,7 @@ export default function GameArea(props) {
   }
 
   return (
-    <div className="grid grid-rows-2 grid-cols-6">
+    <div className="p-6 grid gap-6 grid-rows-2 grid-cols-6">
       {colors.map((color, i) => (
         <Card color={color} key={i} onClick={shuffleCards} />
       ))}
