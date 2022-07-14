@@ -1,5 +1,6 @@
 import { useState } from "react";
 import GameArea from "./components/GameArea";
+import colorArray from "./colors";
 
 export default function App() {
   const [selections, setSelections] = useState([]);
@@ -15,7 +16,7 @@ export default function App() {
 
   return (
     <div className="App grid grid-cols-1">
-      <GameArea onSelection={addSelection} />
+      <GameArea onSelection={addSelection} selectionPool={colorArray} />
     </div>
   );
 }
