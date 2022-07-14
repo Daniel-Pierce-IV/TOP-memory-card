@@ -2,9 +2,11 @@ import Card from "./Card";
 
 export default function GameArea(props) {
   const colorClasses = [
-    "bg-[#FF0000]", // Red
-    "bg-[#FF7400]", // Philippine Orange
-    "bg-[#FFAA00]", // Chrome Yellow
+    "bg-[#FF0000]", // Red FF8500
+    // "bg-[#FF7400]", // Philippine Orange
+    "bg-[#FF8500]", // American Orange
+    // "bg-[#FFAA00]", // Chrome Yellow
+    "bg-[#FFCA00]", // Philippine Yellow
     "bg-[#000000]", // Black
     // "bg-[#FFD300]", // Cyber Yellow
     "bg-[#FFFF00]", // Yellow
