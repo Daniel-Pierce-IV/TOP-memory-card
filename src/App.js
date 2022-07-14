@@ -4,16 +4,28 @@ import colorArray from "./colors";
 
 export default function App() {
   const [selections, setSelections] = useState([]);
+  const [score, setScore] = useState(0);
+
+  function incrementScore() {
+    setScore(score + 1);
+  }
+
+  function resetScore() {
+    setScore(0);
+  }
 
   function addSelection(selection) {
     if (!selections.includes(selection)) {
       setSelections([...selections, selection]);
+      incrementScore();
     } else if (selections.length === colorArray.length) {
       // Allow the game to continue after all cards have been selected
       setSelections([selection]);
+      incrementScore();
     } else {
       setSelections([]);
-      alert("You lost!");
+      alert("You lost! Your score: " + score);
+      resetScore();
     }
   }
 
