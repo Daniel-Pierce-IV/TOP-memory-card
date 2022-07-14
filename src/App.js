@@ -1,6 +1,7 @@
 import { useState } from "react";
 import GameArea from "./components/GameArea";
 import colorArray from "./colors";
+import Header from "./components/Header";
 
 export default function App() {
   const [selections, setSelections] = useState([]);
@@ -30,7 +31,8 @@ export default function App() {
   }
 
   return (
-    <div className="App grid grid-cols-1">
+    <div className="App grid grid-cols-1 grid-rows-[auto,1fr]">
+      <Header score={score} />
       <GameArea onSelection={addSelection} selectionPool={colorArray} />
     </div>
   );
