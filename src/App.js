@@ -1,9 +1,21 @@
+import { useState } from "react";
 import GameArea from "./components/GameArea";
 
 export default function App() {
+  const [selections, setSelections] = useState([]);
+
+  function addSelection(selection) {
+    if (!selections.includes(selection)) {
+      setSelections([...selections, selection]);
+    } else {
+      setSelections([]);
+      alert("You lost!");
+    }
+  }
+
   return (
     <div className="App grid grid-cols-1">
-      <GameArea />
+      <GameArea onSelection={addSelection} />
     </div>
   );
 }
