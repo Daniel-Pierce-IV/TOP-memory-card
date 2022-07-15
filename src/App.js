@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import arrayShuffle from "array-shuffle";
 import randomLetter from "./random-letter";
 import Alphabet from "./data/Alphabet";
 import Colors from "./data/Colors";
@@ -8,13 +9,20 @@ import GameArea from "./components/GameArea";
 import Header from "./components/Header";
 
 export default function App() {
+  const [currentDifficulty, setCurrentDifficulty] = useState(Difficulty.EASY);
   const [selections, setSelections] = useState([]);
+  const [selectionPool, setSelectionPool] = useState(() =>
+    createRandomizedSelectionPool()
+  );
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(0);
   const [hasReset, setHasReset] = useState(false);
   const resetTimer = 0.15; // Seconds
-  const [currentDifficulty, setCurrentDifficulty] = useState(Difficulty.EASY);
   const [hardLetter, setHardLetter] = useState(() => randomLetter());
+
+  function createRandomizedSelectionPool() {
+    return arrayShuffle(determineSelectionPool());
+  }
 
   function determineSelectionPool() {
     if (currentDifficulty === Difficulty.EASY) return Alphabet;
@@ -65,6 +73,8 @@ export default function App() {
     } else {
       resetGame();
     }
+
+    setSelectionPool(createRandomizedSelectionPool());
   }
 
   useEffect(() => {
@@ -75,6 +85,10 @@ export default function App() {
       }, resetTimer * 1000);
     }
   });
+
+  useEffect(() => {
+    setSelectionPool(createRandomizedSelectionPool());
+  }, [currentDifficulty]);
 
   return (
     <div className="App grid grid-cols-1 grid-rows-[auto,1fr]">
@@ -87,7 +101,7 @@ export default function App() {
       />
       <GameArea
         onSelection={addSelection}
-        selectionPool={determineSelectionPool()}
+        selectionPool={selectionPool}
         difficulty={currentDifficulty}
         hardLetter={hardLetter}
       />
