@@ -3,6 +3,7 @@ import GameArea from "./components/GameArea";
 import colorArray from "./colors";
 import Header from "./components/Header";
 import Difficulty from "./Difficulty";
+import Alphabet from "./data/Alphabet";
 
 export default function App() {
   const [selections, setSelections] = useState([]);
@@ -11,6 +12,11 @@ export default function App() {
   const [hasReset, setHasReset] = useState(false);
   const resetTimer = 0.15; // Seconds
   const [currentDifficulty, setCurrentDifficulty] = useState(Difficulty.MEDIUM);
+
+  function determineSelectionPool() {
+    if (currentDifficulty === Difficulty.EASY) return Alphabet;
+    else if (currentDifficulty === Difficulty.MEDIUM) return colorArray;
+  }
 
   function incrementScore() {
     setScore(score + 1);
@@ -64,7 +70,11 @@ export default function App() {
         difficulty={currentDifficulty}
         updateDifficulty={setCurrentDifficulty}
       />
-      <GameArea onSelection={addSelection} selectionPool={colorArray} />
+      <GameArea
+        onSelection={addSelection}
+        selectionPool={determineSelectionPool()}
+        difficulty={currentDifficulty}
+      />
     </div>
   );
 }
