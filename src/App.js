@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import GameArea from "./components/GameArea";
 import colorArray from "./colors";
 import Header from "./components/Header";
+import Difficulty from "./Difficulty";
 
 export default function App() {
   const [selections, setSelections] = useState([]);
@@ -9,6 +10,7 @@ export default function App() {
   const [best, setBest] = useState(0);
   const [hasReset, setHasReset] = useState(false);
   const resetTimer = 0.15; // Seconds
+  const [currentDifficulty, setCurrentDifficulty] = useState(Difficulty.MEDIUM);
 
   function incrementScore() {
     setScore(score + 1);
@@ -55,7 +57,13 @@ export default function App() {
 
   return (
     <div className="App grid grid-cols-1 grid-rows-[auto,1fr]">
-      <Header score={score} best={best} hasReset={hasReset} />
+      <Header
+        score={score}
+        best={best}
+        hasReset={hasReset}
+        difficulty={currentDifficulty}
+        updateDifficulty={setCurrentDifficulty}
+      />
       <GameArea onSelection={addSelection} selectionPool={colorArray} />
     </div>
   );
