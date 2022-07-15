@@ -6,6 +6,7 @@ import Header from "./components/Header";
 export default function App() {
   const [selections, setSelections] = useState([]);
   const [score, setScore] = useState(0);
+  const [best, setBest] = useState(0);
 
   function incrementScore() {
     setScore(score + 1);
@@ -13,6 +14,12 @@ export default function App() {
 
   function resetScore() {
     setScore(0);
+  }
+
+  function updateBestScore() {
+    if (score > best) {
+      setBest(score);
+    }
   }
 
   function addSelection(selection) {
@@ -26,13 +33,14 @@ export default function App() {
     } else {
       setSelections([]);
       alert("You lost! Your score: " + score);
+      updateBestScore();
       resetScore();
     }
   }
 
   return (
     <div className="App grid grid-cols-1 grid-rows-[auto,1fr]">
-      <Header score={score} />
+      <Header score={score} best={best} />
       <GameArea onSelection={addSelection} selectionPool={colorArray} />
     </div>
   );

@@ -10,7 +10,7 @@ export default function Header(props) {
           Color clicks reset once you click them all, so keep going!
         </span>
       </div>
-      <Scoreboard score={props.score} />
+      <Scoreboard {...props} />
     </header>
   );
 }
