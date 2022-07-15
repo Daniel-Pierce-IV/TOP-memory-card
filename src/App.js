@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GameArea from "./components/GameArea";
 import colorArray from "./colors";
 import Header from "./components/Header";
@@ -7,6 +7,8 @@ export default function App() {
   const [selections, setSelections] = useState([]);
   const [score, setScore] = useState(0);
   const [best, setBest] = useState(0);
+  const [hasReset, setHasReset] = useState(false);
+  const resetTimer = 0.15; // Seconds
 
   function incrementScore() {
     setScore(score + 1);
@@ -22,6 +24,13 @@ export default function App() {
     }
   }
 
+  function resetGame() {
+    updateBestScore();
+    setSelections([]);
+    resetScore();
+    setHasReset(true);
+  }
+
   function addSelection(selection) {
     if (!selections.includes(selection)) {
       setSelections([...selections, selection]);
@@ -31,16 +40,22 @@ export default function App() {
       setSelections([selection]);
       incrementScore();
     } else {
-      setSelections([]);
-      alert("You lost! Your score: " + score);
-      updateBestScore();
-      resetScore();
+      resetGame();
     }
   }
 
+  useEffect(() => {
+    // Affects sub-component styling
+    if (hasReset) {
+      setTimeout(() => {
+        setHasReset(false);
+      }, resetTimer * 1000);
+    }
+  });
+
   return (
     <div className="App grid grid-cols-1 grid-rows-[auto,1fr]">
-      <Header score={score} best={best} />
+      <Header score={score} best={best} hasReset={hasReset} />
       <GameArea onSelection={addSelection} selectionPool={colorArray} />
     </div>
   );

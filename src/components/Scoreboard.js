@@ -1,9 +1,13 @@
 export default function Scoreboard(props) {
-  const { score, best } = props;
+  const { score, best, hasReset } = props;
 
   return (
     <div className="grid gap-4 grid-cols-2">
-      <div className="flex flex-col h-full justify-center items-center rounded-xl px-4 bg-black text-white">
+      <div
+        className={`flex flex-col h-full justify-center items-center rounded-xl px-4 bg-black text-white transition-transform duration-75 ${
+          hasReset ? "bg-red-600 scale-[1.2]" : ""
+        }`}
+      >
         <span className="whitespace-nowrap text-lg">Score</span>
         <span className="text-3xl leading-8 pb-0.5">{score}</span>
       </div>
