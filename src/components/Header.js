@@ -28,6 +28,12 @@ export default function Header(props) {
           isActive={Difficulty.MEDIUM === difficulty}
           onClick={updateDifficulty.bind(null, Difficulty.MEDIUM)}
         />
+
+        <DifficultyButton
+          label="Hard"
+          isActive={Difficulty.HARD === difficulty}
+          onClick={updateDifficulty.bind(null, Difficulty.HARD)}
+        />
       </DifficultyControls>
 
       <Scoreboard {...props} />

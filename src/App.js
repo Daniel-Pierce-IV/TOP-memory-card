@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Alphabet from "./data/Alphabet";
 import Colors from "./data/Colors";
+import Fonts from "./data/Fonts";
 import Difficulty from "./enums/Difficulty";
 import GameArea from "./components/GameArea";
 import Header from "./components/Header";
@@ -11,11 +12,12 @@ export default function App() {
   const [best, setBest] = useState(0);
   const [hasReset, setHasReset] = useState(false);
   const resetTimer = 0.15; // Seconds
-  const [currentDifficulty, setCurrentDifficulty] = useState(Difficulty.MEDIUM);
+  const [currentDifficulty, setCurrentDifficulty] = useState(Difficulty.EASY);
 
   function determineSelectionPool() {
     if (currentDifficulty === Difficulty.EASY) return Alphabet;
     else if (currentDifficulty === Difficulty.MEDIUM) return Colors;
+    else if (currentDifficulty === Difficulty.HARD) return Fonts;
   }
 
   function incrementScore() {
