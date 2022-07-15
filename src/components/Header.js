@@ -1,4 +1,4 @@
-import Difficulty from "../Difficulty";
+import Difficulty from "../enums/Difficulty";
 import DifficultyButton from "./DifficultyButton";
 import DifficultyControls from "./DifficultyControls";
 import Scoreboard from "./Scoreboard";

@@ -1,4 +1,4 @@
-const colors = [
+const Colors = [
   "bg-[#FF0000]", // Red FF8500
   // "bg-[#FF7400]", // Philippine Orange
   "bg-[#FF8500]", // American Orange
@@ -17,4 +17,4 @@ const colors = [
   "bg-[#FF0090]", // Magenta
 ];
 
-export default colors;
+export default Colors;

@@ -1,6 +1,6 @@
-import Card from "./Card";
 import shuffle from "array-shuffle";
-import Difficulty from "../Difficulty";
+import Difficulty from "../enums/Difficulty";
+import Card from "./Card";
 
 export default function GameArea(props) {
   const { selectionPool, onSelection, difficulty } = props;

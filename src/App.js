@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import GameArea from "./components/GameArea";
-import colorArray from "./colors";
-import Header from "./components/Header";
-import Difficulty from "./Difficulty";
 import Alphabet from "./data/Alphabet";
+import Colors from "./data/Colors";
+import Difficulty from "./enums/Difficulty";
+import GameArea from "./components/GameArea";
+import Header from "./components/Header";
 
 export default function App() {
   const [selections, setSelections] = useState([]);
@@ -15,7 +15,7 @@ export default function App() {
 
   function determineSelectionPool() {
     if (currentDifficulty === Difficulty.EASY) return Alphabet;
-    else if (currentDifficulty === Difficulty.MEDIUM) return colorArray;
+    else if (currentDifficulty === Difficulty.MEDIUM) return Colors;
   }
 
   function incrementScore() {
@@ -43,7 +43,7 @@ export default function App() {
     if (!selections.includes(selection)) {
       setSelections([...selections, selection]);
       incrementScore();
-    } else if (selections.length === colorArray.length) {
+    } else if (selections.length === Colors.length) {
       // Allow the game to continue after all cards have been selected
       setSelections([selection]);
       incrementScore();
