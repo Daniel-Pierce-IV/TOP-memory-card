@@ -1,12 +1,11 @@
 import shuffle from "array-shuffle";
-import randomLetter from "../random-letter";
 import Difficulty from "../enums/Difficulty";
 import AlphabetCard from "./AlphabetCard";
 import ColorCard from "./ColorCard";
 import FontCard from "./FontCard";
 
 export default function GameArea(props) {
-  const { selectionPool, onSelection, difficulty } = props;
+  const { selectionPool, onSelection, difficulty, hardLetter } = props;
   const selections = shuffle(selectionPool);
 
   let cards;
@@ -28,13 +27,11 @@ export default function GameArea(props) {
       />
     ));
   } else {
-    const letter = randomLetter();
-
     cards = selections.map((font, i) => (
       <FontCard
         key={i}
         font={font}
-        letter={letter}
+        letter={hardLetter}
         onClick={onSelection.bind(null, font)}
       />
     ));

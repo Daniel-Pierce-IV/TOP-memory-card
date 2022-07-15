@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import randomLetter from "./random-letter";
 import Alphabet from "./data/Alphabet";
 import Colors from "./data/Colors";
 import Fonts from "./data/Fonts";
@@ -13,6 +14,7 @@ export default function App() {
   const [hasReset, setHasReset] = useState(false);
   const resetTimer = 0.15; // Seconds
   const [currentDifficulty, setCurrentDifficulty] = useState(Difficulty.EASY);
+  const [hardLetter, setHardLetter] = useState(() => randomLetter());
 
   function determineSelectionPool() {
     if (currentDifficulty === Difficulty.EASY) return Alphabet;
@@ -34,10 +36,21 @@ export default function App() {
     }
   }
 
+  function chooseNewLetter() {
+    let newLetter;
+
+    do {
+      newLetter = randomLetter();
+    } while (hardLetter === newLetter);
+
+    setHardLetter(newLetter);
+  }
+
   function resetGame() {
     updateBestScore();
     setSelections([]);
     resetScore();
+    chooseNewLetter();
     setHasReset(true);
   }
 
@@ -76,6 +89,7 @@ export default function App() {
         onSelection={addSelection}
         selectionPool={determineSelectionPool()}
         difficulty={currentDifficulty}
+        hardLetter={hardLetter}
       />
     </div>
   );
