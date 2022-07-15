@@ -1,6 +1,7 @@
 import shuffle from "array-shuffle";
 import Difficulty from "../enums/Difficulty";
-import Card from "./Card";
+import AlphabetCard from "./AlphabetCard";
+import ColorCard from "./ColorCard";
 
 export default function GameArea(props) {
   const { selectionPool, onSelection, difficulty } = props;
@@ -9,23 +10,19 @@ export default function GameArea(props) {
   let cards;
 
   if (difficulty === Difficulty.EASY) {
-    cards = selections.map((selection, i) => (
-      <Card
-        text={selection}
+    cards = selections.map((letter, i) => (
+      <AlphabetCard
         key={i}
-        onClick={() => {
-          onSelection(selection);
-        }}
+        letter={letter}
+        onClick={onSelection.bind(null, letter)}
       />
     ));
   } else {
-    cards = selections.map((selection, i) => (
-      <Card
-        color={selection}
+    cards = selections.map((color, i) => (
+      <ColorCard
         key={i}
-        onClick={() => {
-          onSelection(selection);
-        }}
+        color={color}
+        onClick={onSelection.bind(null, color)}
       />
     ));
   }
