@@ -6,7 +6,7 @@ export default function AlphabetCard(props) {
       className={`flex justify-center items-center rounded-xl cursor-pointer border-8 border-black`}
       onClick={onClick}
     >
-      <span className=" text-9xl">{letter}</span>
+      <span className="select-none text-9xl">{letter}</span>
     </div>
   );
 }
